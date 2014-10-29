@@ -1,6 +1,8 @@
 ICanHaz.load
 ============
 
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://tonekk.mit-license.org)
+
 Little extension for loading templates asynchronously with [ICanHaz.js](https://github.com/HenrikJoreteg/ICanHaz.js) and [jQuery](http://www.jquery.com)
 
 ## Usage
