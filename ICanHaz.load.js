@@ -30,7 +30,7 @@
 
       var path = [(templatePath || ich.templatePath), '/',
                  templateName, '.',
-                 (templateExtension || ich.templateExtension)].join('');
+                 (templateExtension || ich.templateExtension || 'mustache')].join('');
 
 
       // Request template file async
