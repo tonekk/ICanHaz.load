@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jasmine/1.3.1/jasmine.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jasmine/1.3.1/jasmine-html.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jasmine/1.3.1/jasmine.css" />
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/ICanHaz.js/0.10.3/ICanHaz.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../ICanHaz.load.js"></script>
+
+    <script type="text/javascript">
+
+      /*
+       * Test suite
+       */
+      describe("ICanHaz.load", function() {
+
+        beforeEach(function() {
+          ich.clearAll();
+        });
+
+        /*
+         * Global config
+         */
+        ich.templatePath = "templates";
+        ich.templateExtension = "mustache";
+
+        /*
+         * Specs
+         */
+
+        it("should load template", function() {
+
+          var spy = {
+            func: function() {
+            }
+          };
+
+          spyOn(spy, 'func');
+
+          runs(function() {
+            ich.load('template', spy.func);
+          });
+
+          waitsFor(function() {
+            return ich.template;
+          }, "Should create template", 750);
+
+          runs(function() {
+
+            $('body').append(ich.template({
+              class: 'test',
+              text: 'foo'
+            }));
+
+            expect(spy.func).toHaveBeenCalled();
+            expect($('.test').length).toBe(1);
+            expect($('.test').text().indexOf('foo')).not.toBe(-1);
+          });
+
+        });
+
+
+        it("should prefer arguments over global config", function() {
+
+          runs(function() {
+            ich.load('template', function() {}, 'tpl', 'mus');
+          });
+
+          waitsFor(function() {
+            return ich.template;
+          }, "Should create template", 750);
+
+          runs(function() {
+            $('body').append(ich.template({
+              id: 'unique',
+              text: 'foo'
+            }));
+
+            expect($('#unique').length).toBe(1);
+            expect($('#unique').text().indexOf('foo')).not.toBe(-1);
+          });
+        });
+
+
+        it("should request template only once", function() {
+
+          spyOn($, 'get');
+
+          runs(function() {
+            for (var i = 0; i < 30; i++) {
+              ich.load('template', function() {});
+            }
+          });
+
+          waitsFor(function() {
+            return $.get.callCount > 0;
+          }, "Should create template", 750);
+
+          runs(function() {
+            expect($.get.calls.length).toBe(1);
+          });
+        });
+      });
+
+
+      $(function() {
+
+        /*
+         * Execute jasmine html runner
+         */
+
+        var jasmineEnv = jasmine.getEnv();
+        jasmineEnv.updateInterval = 250;
+
+        var htmlReporter = new jasmine.HtmlReporter();
+        jasmineEnv.addReporter(htmlReporter);
+        jasmineEnv.specFilter = function(spec) {
+          return htmlReporter.specFilter(spec);
+        };
+
+        jasmineEnv.execute();
+
+      });
+    </script>
+  </head>
+
+  <body></body>
+</html>
