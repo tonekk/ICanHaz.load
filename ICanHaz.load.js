@@ -20,7 +20,7 @@
       templates = {};
 
   ich.load = function(templateName, cb, templatePath, templateExtension) {
-    if(!templates[templateName]) {
+    if (!templates[templateName]) {
 
       // Save template loading state und all callbacks here
       templates[templateName] = {
