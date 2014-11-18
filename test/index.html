@@ -16,6 +16,7 @@
       /*
        * Test suite
        */
+
       describe("ICanHaz.load", function() {
 
         beforeEach(function() {
@@ -25,6 +26,7 @@
         /*
          * Global config
          */
+
         ich.templatePath = "templates";
         ich.templateExtension = "mustache";
 
@@ -102,6 +104,23 @@
 
           runs(function() {
             expect($.get.calls.length).toBe(1);
+          });
+        });
+
+
+        it("should provide shortcut loadTemplate()", function() {
+          runs(function() {
+            ich.loadTemplate('template', { class: 'foo', text: 'bar' }, function(content) {
+              $('body').append(content);
+            });
+          });
+
+          waitsFor(function() {
+            return $('.foo').length;
+          }, "Should create template", 750);
+
+          runs(function() {
+            expect($('.foo').text().indexOf('bar')).not.toBe(-1);
           });
         });
       });
