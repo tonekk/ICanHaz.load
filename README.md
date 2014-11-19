@@ -2,6 +2,7 @@ ICanHaz.load
 ============
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://tonekk.mit-license.org)
+[![Bower version](https://badge.fury.io/bo/icanhaz.load.svg)](http://badge.fury.io/bo/icanhaz.load)
 
 Little extension for loading templates asynchronously with [ICanHaz.js](https://github.com/HenrikJoreteg/ICanHaz.js) and [jQuery](http://www.jquery.com)
 
