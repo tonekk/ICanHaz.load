@@ -11,7 +11,7 @@ Little extension for loading templates asynchronously with [ICanHaz.js](https://
 ```javascript
 
 // Global config
-ich.templatePath('/assets/templates');
+ich.templatePath = '/assets/templates';
 // optionally, set a special extension (.mustache is standard)
 ich.templateExtension = 'tpl';
 
