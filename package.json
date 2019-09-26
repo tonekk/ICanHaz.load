@@ -1,0 +1,12 @@
+{
+  "name": "ICanHaz.load",
+  "version": "0.1.0",
+  "description": "Little extension for loading views with ICanHaz.js. Requires jQuery",
+  "dependencies": {
+    "icanhaz": "^0.10.3",
+    "jquery": "^2.1.1"
+  },
+  "devDependencies": {
+    "jasmine": "^3.0.0"
+  }
+}

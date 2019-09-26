@@ -9,7 +9,7 @@
   ],
   "keywords": [
     "mustache",
-    "icanhazjs"
+    "icanhaz"
   ],
   "authors": [
     "tonekk"
@@ -23,7 +23,7 @@
     "tests"
   ],
   "dependencies": {
-    "icanhazjs": "~0.10.3",
+    "icanhaz": "~0.10.3",
     "jquery": "~2.1.1"
   },
   "devDependencies": {
